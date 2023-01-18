@@ -1,0 +1,9 @@
+
+
+== Validation
+
+goal validate an email-address with minimal dependencies
+
+needed
+
+*
