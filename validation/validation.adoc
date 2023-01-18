@@ -6,4 +6,4 @@ goal validate an email-address with minimal dependencies
 
 needed
 
-*
+* https://spring.io/guides/gs/validating-form-input/

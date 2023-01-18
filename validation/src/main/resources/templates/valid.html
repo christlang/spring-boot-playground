@@ -13,14 +13,9 @@
     <div class="starter-template">
         <h1>Spring Boot Web Thymeleaf Example</h1>
         <h2>
-            <span>Hello World</span>
+            <span>valid input:<span th:text="${validInput}"></span></span>
         </h2>
     </div>
-    <form action="#" th:action="@{/check}" method="post">
-        <label for="email">E-Mail</label>
-        <input id="email" name="email" type="email">
-        <input type="submit" value="Submit"/>
-    </form>
 </main>
 
 </body>
