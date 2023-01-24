@@ -3,3 +3,9 @@
 this is a place for small simple projects that put a light on some aspects of spring-boot applications.
 
 fast project creation: https://start.spring.io/
+
+often needed
+
+* Spring Web
+* Spring Bott DevTools
+* Thymeleaf
