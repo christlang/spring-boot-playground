@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timezone-Examples</title>
+</head>
+<body>
+  formatted values from request:
+  <ul>
+    <li>time: <span data-th-text="${formattedTime}">xxx</span></li>
+    <li>request timezone <span data-th-text="${requestTimezone}">xxx</span></li>
+  </ul>
+
+  <script>
+      console.log("hello world");
+      const date = new Date();
+      const offset = date.getTimezoneOffset() / 60;
+      console.log(`offset ${offset}`);
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      console.log(`tz: ${tz}`);
+  </script>
+</body>
+</html>

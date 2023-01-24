@@ -3,8 +3,30 @@
 
 getting timezone from request to format time accordingly
 
+there seems to be no simple solution for that until now...
+
+* https://www.logicbig.com/tutorials/spring-framework/spring-web-mvc/client-time-zone.html
+** This header doesn't have any client's time zone information
+** There's currently no standard way or specification to obtain client's time zone information.
+
+
+
 [source,bash]
 ----
 mvn spring-boot:run
 browser http://localhost:8080/
+----
+
+
+handling timezone in linux / chrome
+
+[source,bash]
+----
+# list current config
+timedatectl
+# list possible ones
+timedatectl list-timezones
+# change
+sudo timedatectl set-timezone America/New_York
+sudo timedatectl set-timezone Europe/Berlin
 ----
