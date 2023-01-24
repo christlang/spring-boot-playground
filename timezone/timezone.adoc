@@ -1,0 +1,10 @@
+
+== Timezone
+
+getting timezone from request to format time accordingly
+
+[source,bash]
+----
+mvn spring-boot:run
+browser http://localhost:8080/
+----
