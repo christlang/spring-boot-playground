@@ -1,0 +1,11 @@
+
+== Retry
+
+retries failing actions a few times but finally report error if it is not self-healing.
+
+[source,bash]
+----
+mvn spring-boot:run
+browser http://localhost:8080/
+----
+

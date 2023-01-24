@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>retry</title>
+</head>
+<body>
+  do a request to a shaky service that has errors in first responses
+  <ul>
+      <li><a data-th-href="@{/shaky-service}">shaky service</a></li>
+      <li><a data-th-href="@{/shaky-service-retry}">shaky service with retry</a></li>
+  </ul>
+
+
+</body>
+</html>
