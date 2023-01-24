@@ -3,6 +3,8 @@ package com.example.springretry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RetryController {
@@ -20,15 +22,15 @@ public class RetryController {
         return "home";
     }
 
-    @GetMapping("/shaky-service")
-    public String shakyService(Model model) {
-        model.addAttribute("message", shakyService.doRequest(3));
+    @PostMapping("/shaky-service")
+    public String shakyService(@RequestParam int successRate, Model model) {
+        model.addAttribute("message", shakyService.doRequest(successRate));
         return "retry";
     }
 
-    @GetMapping("/shaky-service-retry")
-    public String shakyServiceRetry(Model model) {
-        model.addAttribute("message", shakyServiceRetry.doRequest(3));
+    @PostMapping("/shaky-service-retry")
+    public String shakyServiceRetry(@RequestParam int successRate, Model model) {
+        model.addAttribute("message", shakyServiceRetry.doRequest(successRate));
         return "retry";
     }
 }

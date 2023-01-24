@@ -15,7 +15,7 @@ public class ShakyService {
 
     public String doRequest(int successRate) {
         if (counter.incrementAndGet() % successRate > 0) {
-            log.warn("self-healing request");
+            log.warn("self-healing request: " + counter.get());
             throw new IllegalArgumentException("counter value %s can not be divided %s without rest".formatted(counter, successRate));
         }
 

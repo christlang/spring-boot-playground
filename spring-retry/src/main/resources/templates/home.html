@@ -6,10 +6,15 @@
 </head>
 <body>
   do a request to a shaky service that has errors in first responses
-  <ul>
-      <li><a data-th-href="@{/shaky-service}">shaky service</a></li>
-      <li><a data-th-href="@{/shaky-service-retry}">shaky service with retry</a></li>
-  </ul>
+  <form method="post">
+      <label for="successRate">success rate</label>
+      <input id="successRate" name="successRate" type="number" value="3">
+      <ul>
+          <li><input type="submit" value="submit shaky" data-th-formaction="@{/shaky-service}"/></li>
+          <li><input type="submit" value="submit retry" data-th-formaction="@{/shaky-service-retry}"/></li>
+      </ul>
+  </form>
+
 
 
 </body>
