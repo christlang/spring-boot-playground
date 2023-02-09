@@ -1,0 +1,15 @@
+
+
+Example for load testing
+
+
+* load-app is a simple spring-boot application
+* load-test is a gatling
+** download: https://github.com/gatling/gatling-maven-plugin-demo-java
+
+
+[source,bash]
+----
+
+
+----

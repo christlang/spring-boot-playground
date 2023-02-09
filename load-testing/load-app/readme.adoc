@@ -1,0 +1,11 @@
+
+
+Simple app for testing the load
+
+[source,bash]
+----
+mvn spring-boot:run
+
+# testing
+browser http://localhost:8080
+----
