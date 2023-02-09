@@ -12,6 +12,10 @@ Example for load testing
 * gatling-mvn example with mvn and java
 **  https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/
 ** `mvn archetype:generate -DgroupId=com.example -DartifactId=gatling-mvn -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false`
+* gatling-gradle-kotlin
+** How to Start Gradle with Kotlin: https://docs.gradle.org/current/samples/sample_building_kotlin_applications.html
+** `./gradlew gatlingRun`
+
 
 [source,bash]
 ----

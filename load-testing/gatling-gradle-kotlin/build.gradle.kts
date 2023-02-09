@@ -4,3 +4,14 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/7.0/samples
  */
+plugins {
+    kotlin("jvm")
+    kotlin("plugin.allopen")
+
+    // The following line allows to load io.gatling.gradle plugin and directly apply it
+    id("io.gatling.gradle") version "3.9.0.4"
+}
+
+repositories {
+    mavenCentral()
+}

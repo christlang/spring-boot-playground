@@ -1,0 +1,13 @@
+
+Example for using gradle plugin to execute gatling tests
+
+[source, bash]
+----
+gradle init
+> basic
+> kotlin
+
+# adjust project
+
+./gradlew gatlingRun
+----
