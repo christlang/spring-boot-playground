@@ -1,18 +1,22 @@
 package com.example
 
-import io.gatling.javaapi.core.CoreDsl
-import io.gatling.javaapi.core.Simulation
-import io.gatling.javaapi.http.HttpDsl
+import io.gatling.javaapi.core.*
+import io.gatling.javaapi.http.*
+import io.gatling.javaapi.core.CoreDsl.*
+import io.gatling.javaapi.http.HttpDsl.*
 
 class LoadAppSimulation : Simulation() {
 
-    private val httpProtocol = HttpDsl.http
-        .baseUrl("http://localhost:8080")
-        .acceptHeader("text/html")
+    private val httpProtocol =
+        http
+            .baseUrl("http://localhost:8080")
+            .acceptHeader("text/html")
 
-    private val scn = CoreDsl.scenario("produce some load")
+    private val getIndex = exec(http("get index").get(""))
+
+    private val scn = scenario("produce some load")
         .forever().on(
-            CoreDsl.exec(getIndex)
+            exec(getIndex)
                 .pause(5)
                 .exec(getIndex)
         )
@@ -20,13 +24,9 @@ class LoadAppSimulation : Simulation() {
     init {
         setUp(
             scn.injectOpen(
-                CoreDsl.nothingFor(5),
-                CoreDsl.rampUsers(10000).during(60)
+                nothingFor(5),
+                rampUsers(10000).during(60)
             ).protocols(httpProtocol)
         ).maxDuration(60)
-    }
-
-    companion object {
-        private val getIndex = CoreDsl.exec(HttpDsl.http("get index")[""])
     }
 }
