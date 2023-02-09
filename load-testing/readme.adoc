@@ -4,6 +4,8 @@ Example for load testing
 
 
 * load-app is a simple spring-boot application
+* gatling-gradle-plugin-demo-kotlin-main
+** https://github.com/gatling/gatling-gradle-plugin-demo-kotlin
 * gatling-maven-plugin-demo-java-main is a gatling test example
 ** download: https://github.com/gatling/gatling-maven-plugin-demo-java
 ** examples under: https://github.com/james-willett/gatling-fundamentals-java-api
@@ -21,4 +23,7 @@ mvn gatling:test -Dgatling.simulationClass=example.LoadAppTesting
 
 cd gatling-mvn
 mvn gatling:test
+
+cd gatling-gradle-plugin-demo-kotlin-main
+./gradlew gatlingRun
 ----
