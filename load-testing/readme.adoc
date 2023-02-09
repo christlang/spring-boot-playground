@@ -4,10 +4,12 @@ Example for load testing
 
 
 * load-app is a simple spring-boot application
-* load-test is a gatling
+* gatling-maven-plugin-demo-java-main is a gatling test example
 ** download: https://github.com/gatling/gatling-maven-plugin-demo-java
 ** examples under: https://github.com/james-willett/gatling-fundamentals-java-api
-
+* gatling-mvn example with mvn and java
+**  https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/
+** `mvn archetype:generate -DgroupId=com.example -DartifactId=gatling-mvn -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false`
 
 [source,bash]
 ----
@@ -16,4 +18,7 @@ mvn spring-boot:run
 
 cd gatling-maven-plugin-demo-java-main
 mvn gatling:test -Dgatling.simulationClass=example.LoadAppTesting
+
+cd gatling-mvn
+mvn gatling:test
 ----
