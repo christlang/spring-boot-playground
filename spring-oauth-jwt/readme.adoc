@@ -2,3 +2,41 @@
 == spring oauth jwt
 
 example for authentication with jwt and role mapping via TestRestTemplate
+
+[source, bash]
+----
+docker-compose rm # remove old keycloak config
+docker-compose up
+
+# keycloak admin/admin
+browser http://lcoalhost:8081/
+
+mvn spring-boot:run
+
+browser http://lcoalhost:8080/
+----
+
+== keycloak
+
+as openid connect implementation
+
+== Terraform
+
+to configure keycloak
+
+* https://developer.hashicorp.com/terraform/intro[Intro]
+
+[source,bash]
+----
+docker exec -it terraform sh
+
+cd /opt/config
+terraform init     # init workspace
+terraform validate # validate config
+terraform fmt      # reformat config to default layout
+
+terraform plan --out savedPlan
+terraform apply savedPlan
+
+terraform console  # interactive
+----

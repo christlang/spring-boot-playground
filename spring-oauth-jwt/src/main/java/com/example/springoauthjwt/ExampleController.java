@@ -11,4 +11,9 @@ public class ExampleController {
         return "index";
     }
 
+    @GetMapping("/secure")
+    public String secure() {
+        return "secure";
+    }
+
 }

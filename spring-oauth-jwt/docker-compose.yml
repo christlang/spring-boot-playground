@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:20.0.3
+    container_name: keycloak
+    command:
+      - start-dev
+    restart: unless-stopped
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "8081:8080"
+
+  terraform:
+    image: hashicorp/terraform:0.14.10
+    container_name: terraform
+    entrypoint: /opt/config/config.sh
+    environment:
+      - TF_LOG=WARN
+    volumes:
+      - ./terraform:/opt/config
