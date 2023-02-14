@@ -1,0 +1,4 @@
+
+== spring oauth jwt
+
+example for authentication with jwt and role mapping via TestRestTemplate
