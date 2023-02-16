@@ -5,7 +5,10 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
-    org.springframework.security: TRACE
+    org.springframework.security: INFO
+    org.springframework.web.client.RestTemplate: INFO
+    org.apache.http: INFO
+    httpclient.wire: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
 
 spring:
@@ -16,8 +19,3 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8081/realms/example
-          jwk-set-uri: http://localhost:8081/realms/example/protocol/openid-connect/certs
-          # http://localhost:8081/realms/example/.well-known/openid-configuration
-          # http://localhost:8081/realms/example/.well-known/openid-configuration/issuer
-
-          # http://localhost:8081/realms/example/.well-known/openid-configuration

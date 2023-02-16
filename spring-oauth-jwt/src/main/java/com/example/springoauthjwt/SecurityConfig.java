@@ -11,17 +11,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -74,8 +69,6 @@ public class SecurityConfig {
         // Enable anonymous
         http.anonymous();
 
-        // Enable and configure CORS
-        http.cors().configurationSource(corsConfigurationSource());
 
         // State-less session (state in access-token only)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -89,35 +82,13 @@ public class SecurityConfig {
             response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
         });
 
-        // If SSL enabled, disable http (https only)
-        if (serverProperties.getSsl() != null && serverProperties.getSsl().isEnabled()) {
-            http.requiresChannel().anyRequest().requiresSecure();
-        } else {
-            http.requiresChannel().anyRequest().requiresInsecure();
-        }
-
         // Route security: authenticated to all routes but actuator and Swagger-UI
         // @formatter:off
         http.authorizeRequests()
-                .requestMatchers("/actuator/health/readiness", "/actuator/health/liveness", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/").permitAll()
                 .anyRequest().authenticated();
         // @formatter:on
 
         return http.build();
-    }
-
-    private CorsConfigurationSource corsConfigurationSource() {
-        // Very permissive CORS config...
-        final var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setExposedHeaders(Arrays.asList("*"));
-
-        // Limited to API routes (neither actuator nor Swagger-UI)
-        final var source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/greet/**", configuration);
-
-        return source;
     }
 }
