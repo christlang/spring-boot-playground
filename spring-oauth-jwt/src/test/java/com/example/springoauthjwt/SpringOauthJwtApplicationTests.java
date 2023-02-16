@@ -25,8 +25,8 @@ class SpringOauthJwtApplicationTests {
 	private Integer port;
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
-	private final User hasRight = new User("brice", "brice");
-	private final User hasNotRight = new User("igor", "igor");
+	private final User hasRight = new User("mandy", "mandy");
+	private final User hasNotRight = new User("joe", "joe");
 
 	@Test
 	void checkCorrectRight() throws JsonProcessingException {
@@ -34,7 +34,7 @@ class SpringOauthJwtApplicationTests {
 
 		assertThat(result.getStatusCode().value()).isEqualTo(200);
 		assertThat(result.getBody()).isEqualTo(
-				"Hi brice! You are granted with: [offline_access, NICE, default-roles-example, uma_authorization].");
+				"Hi %s! You are granted with: [NICE].".formatted(hasRight.name));
 	}
 
 	@Test

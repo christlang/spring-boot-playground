@@ -3,17 +3,23 @@
 
 example for authentication with jwt and role mapping via TestRestTemplate
 
+image::doc/overview.dio.png[]
+
+
 [source, bash]
 ----
 docker-compose rm # remove old keycloak config
-docker-compose up
+docker-compose up # takes some time until terraform can configure keycloak
 
 # keycloak admin/admin
 browser http://lcoalhost:8081/
-# test/test
+# joe/joe
+# mandy/mandy
 http://localhost:8081/realms/example/account
 
 mvn spring-boot:run
+
+mvn test
 
 browser http://lcoalhost:8080/
 ----

@@ -57,18 +57,65 @@ resource "keycloak_realm" "realm" {
   }
 }
 
-resource "keycloak_user" "user" {
+resource "keycloak_openid_client" "openid_client" {
+  realm_id      = keycloak_realm.realm.id
+  client_id     = "spring-boot"
+  client_secret = "aweLEwtZ5H5rLVOQPQx2abuFocHtEv0v"
+
+  name    = "client"
+  enabled = true
+
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = true
+  access_type                  = "CONFIDENTIAL"
+  valid_redirect_uris = [
+    "http://localhost:8080/*"
+  ]
+}
+
+resource "keycloak_role" "realm_role" {
+  realm_id    = keycloak_realm.realm.id
+  name        = "NICE"
+  description = "NICE"
+}
+
+resource "keycloak_user" "user_joe" {
   realm_id = keycloak_realm.realm.id
-  username = "test"
+  username = "joe"
   enabled  = true
 
-  email          = "test@example.de"
+  email          = "joe@example.de"
   email_verified = true
-  first_name     = "test"
-  last_name      = "test"
+  first_name     = "joe"
+  last_name      = "joe"
 
   initial_password {
-    value     = "Test"
+    value     = "joe"
     temporary = false
   }
+}
+
+resource "keycloak_user" "user_mandy" {
+  realm_id = keycloak_realm.realm.id
+  username = "mandy"
+  enabled  = true
+
+  email          = "mandy@example.de"
+  email_verified = true
+  first_name     = "mandy"
+  last_name      = "mandy"
+
+  initial_password {
+    value     = "mandy"
+    temporary = false
+  }
+}
+
+resource "keycloak_user_roles" "user_roles" {
+  realm_id = keycloak_realm.realm.id
+  user_id  = keycloak_user.user_mandy.id
+
+  role_ids = [
+    keycloak_role.realm_role.id,
+  ]
 }
