@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class GreetingController {
 
     @GetMapping()
-    @PreAuthorize("hasAuthority('NICE')")
+    @PreAuthorize("hasRole('NICE')")
     public String getGreeting(JwtAuthenticationToken auth) {
         return "Hi %s! You are granted with: %s.".formatted(
                 auth.getToken().getClaimAsString(StandardClaimNames.PREFERRED_USERNAME),

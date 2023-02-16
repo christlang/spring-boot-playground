@@ -34,7 +34,7 @@ class SpringOauthJwtApplicationTests {
 
 		assertThat(result.getStatusCode().value()).isEqualTo(200);
 		assertThat(result.getBody()).isEqualTo(
-				"Hi %s! You are granted with: [NICE].".formatted(hasRight.name));
+				"Hi %s! You are granted with: [ROLE_NICE].".formatted(hasRight.name));
 	}
 
 	@Test
