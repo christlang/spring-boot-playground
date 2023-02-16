@@ -3,8 +3,6 @@ package com.example.springoauthjwt;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -54,12 +52,6 @@ public class SecurityConfig {
 
         // Enable OAuth2 with custom authorities mapping
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(authenticationConverter);
-
-        // Return 401 (unauthorized) instead of 403 (redirect to login) when authorization is missing or invalid
-        http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
-            response.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Restricted Content\"");
-            response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
-        });
 
         http.authorizeHttpRequests()
                 .requestMatchers("/").permitAll()
