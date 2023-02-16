@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
   keycloak:
     image: quay.io/keycloak/keycloak:20.0.3
     container_name: keycloak
@@ -12,6 +24,10 @@ services:
       - KEYCLOAK_ADMIN_PASSWORD=admin
     ports:
       - "8081:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
   terraform:
     image: hashicorp/terraform:0.14.10
@@ -21,3 +37,7 @@ services:
       - TF_LOG=WARN
     volumes:
       - ./terraform:/opt/config
+    deploy:
+      resources:
+        limits:
+          memory: 128M

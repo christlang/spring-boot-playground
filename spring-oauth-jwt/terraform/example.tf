@@ -1,27 +1,23 @@
 resource "keycloak_realm" "realm" {
-  realm             = "my-realm"
+  realm             = "example"
   enabled           = true
-  display_name      = "my realm"
-  display_name_html = "<b>my realm</b>"
+  display_name      = "example realm"
+  display_name_html = "<b>example realm</b>"
 
   login_theme = "base"
 
   access_code_lifespan = "1h"
 
-  ssl_required    = "external"
-  password_policy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"
+  ssl_required = "external"
+  #password_policy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"
   attributes = {
     mycustomAttribute = "myCustomValue"
   }
 
   smtp_server {
-    host = "smtp.example.com"
+    host = "mailhog"
+    port = 1025
     from = "example@example.com"
-
-    auth {
-      username = "tom"
-      password = "password"
-    }
   }
 
   internationalization {
@@ -58,5 +54,21 @@ resource "keycloak_realm" "realm" {
     relying_party_entity_name = "Example"
     relying_party_id          = "keycloak.example.com"
     signature_algorithms      = ["ES256", "RS256"]
+  }
+}
+
+resource "keycloak_user" "user" {
+  realm_id = keycloak_realm.realm.id
+  username = "test"
+  enabled  = true
+
+  email          = "test@example.de"
+  email_verified = true
+  first_name     = "test"
+  last_name      = "test"
+
+  initial_password {
+    value     = "Test"
+    temporary = false
   }
 }

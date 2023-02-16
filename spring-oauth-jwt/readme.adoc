@@ -10,6 +10,8 @@ docker-compose up
 
 # keycloak admin/admin
 browser http://lcoalhost:8081/
+# test/test
+http://localhost:8081/realms/example/account
 
 mvn spring-boot:run
 
@@ -25,6 +27,7 @@ as openid connect implementation
 to configure keycloak
 
 * https://developer.hashicorp.com/terraform/intro[Intro]
+* https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs[keycloak provider]
 
 [source,bash]
 ----
@@ -39,4 +42,12 @@ terraform plan --out savedPlan
 terraform apply savedPlan
 
 terraform console  # interactive
+----
+
+=== Debugging
+
+[source,bash]
+----
+docker exec -it terraform sh
+cd /opt/config
 ----
