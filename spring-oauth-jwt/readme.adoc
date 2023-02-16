@@ -18,6 +18,15 @@ mvn spring-boot:run
 browser http://lcoalhost:8080/
 ----
 
+Infos
+
+* https://dzone.com/articles/spring-oauth2-resource-servers
+** is not working -> every time 401
+
+* https://www.baeldung.com/spring-security-oauth-jwt
+** spring boot 2
+
+
 == keycloak
 
 as openid connect implementation
