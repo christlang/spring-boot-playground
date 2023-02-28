@@ -5,10 +5,9 @@
     <title>parallel calls</title>
 </head>
 <body>
-
 <ul>
-    <li><a data-th-href="@{webclient}">call to webclient</a></li>
-    <li><a data-th-href="@{resttemplate}">call to resttemplate</a></li>
+    <li><a data-th-href="@{webclient?calls=30}">30 calls to webclient</a></li>
+    <li><a data-th-href="@{resttemplate?calls=30}">30 calls to resttemplate</a></li>
 </ul>
 
 

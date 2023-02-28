@@ -2,12 +2,10 @@ package com.example.parallelrequests;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -21,8 +19,7 @@ public class RequestController {
 
     Logger log = LoggerFactory.getLogger(RequestController.class);
 
-    private static String URL = "https://www.google.de/";
-    private static int CALLS = 30;
+    private static final String URL = "https://www.google.de/";
 
     @GetMapping
     String index() {
@@ -30,7 +27,7 @@ public class RequestController {
     }
 
     @GetMapping("webclient")
-    String webclient(Model model) {
+    String webclient(@RequestParam("calls") Integer calls, Model model) {
         model.addAttribute("duration", 10);
 
         WebClient webClient = WebClient.create(URL);
@@ -39,7 +36,7 @@ public class RequestController {
 
         List<String> requestUrls = new ArrayList<>();
 
-        for (int i=0; i < CALLS; ++i) {
+        for (int i=0; i < calls; ++i) {
             requestUrls.add(URL);
         }
 
@@ -62,13 +59,13 @@ public class RequestController {
     }
 
     @GetMapping("resttemplate")
-    String restclient(Model model) {
+    String restclient(@RequestParam("calls") Integer calls, Model model) {
         RestTemplate rest = new RestTemplate();
         List<String> results = new ArrayList<>();
 
         long start = System.currentTimeMillis();
 
-        for (int i=0; i < CALLS; ++i) {
+        for (int i=0; i < calls; ++i) {
             results.add("result " + rest.getForEntity(URL, String.class).getStatusCode());
         }
 
