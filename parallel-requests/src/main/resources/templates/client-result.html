@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+  took <span data-th-text="${duration}" milliseconds></span>
+
+  <div>
+      <ol>
+          <li data-th-each="result : ${results}">
+              <span data-th-text="${result}"></span>
+          </li>
+      </ol>
+  </div>
+</body>
+</html>

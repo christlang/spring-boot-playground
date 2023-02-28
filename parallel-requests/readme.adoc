@@ -1,3 +1,14 @@
 
 
-examples for parallel requests to improve perfomance of frontend
+examples for parallel requests to improve performance of frontend
+
+[source,bash]
+----
+./gradlew bootRun
+browser http://localhost:8080/
+----
+
+Resources
+
+* Spring Boot 5 Webclient - https://www.baeldung.com/spring-5-webclient
+* Simultaneous calls - https://www.baeldung.com/spring-webclient-simultaneous-calls
