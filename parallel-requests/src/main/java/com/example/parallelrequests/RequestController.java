@@ -19,7 +19,7 @@ public class RequestController {
 
     Logger log = LoggerFactory.getLogger(RequestController.class);
 
-    private static final String URL = "https://www.google.de/";
+    static final String URL = "https://www.google.de/";
 
     @GetMapping
     String index() {
