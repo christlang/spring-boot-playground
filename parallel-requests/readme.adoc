@@ -1,0 +1,3 @@
+
+
+examples for parallel requests to improve perfomance of frontend
