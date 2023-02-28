@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -36,15 +37,26 @@ public class RequestController {
 
         long start = System.currentTimeMillis();
 
-        String result = webClient.get().exchangeToMono(response -> {
-            return Mono.just("result %s".formatted(response.statusCode()));
-        }).block();
+        List<String> requestUrls = new ArrayList<>();
+
+        for (int i=0; i < CALLS; ++i) {
+            requestUrls.add(URL);
+        }
+
+        final Flux<String> stringFlux = Flux.fromIterable(requestUrls)
+                .flatMap(url ->
+                        webClient
+                                .get()
+                                .exchangeToMono(response -> Mono.just("result %s".formatted(response.statusCode())))
+                );
+
+        List<String> results = stringFlux.toStream().toList();
 
         long end = System.currentTimeMillis();
         long diffInSeconds = end-start;
         log.info("took %s ms".formatted(diffInSeconds));
         model.addAttribute("duration", diffInSeconds);
-        model.addAttribute("results", result);
+        model.addAttribute("results", results);
 
         return "client-result";
     }

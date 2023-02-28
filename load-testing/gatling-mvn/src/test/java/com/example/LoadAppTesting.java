@@ -59,7 +59,7 @@ public class LoadAppTesting extends Simulation {
         setUp(
                 scn.injectOpen(
                         nothingFor(5),
-                        rampUsers(10).during(60)
+                        rampUsers(100_000).during(60)
                 ).protocols(httpProtocol)
         ).maxDuration(60);
     }
